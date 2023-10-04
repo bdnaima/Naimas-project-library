@@ -72,7 +72,7 @@ const books = [
     rating: 4.7,
     description:
       "The first book in the beloved Harry Potter series, it introduces readers to the magical world of Hogwarts and the young wizard Harry Potter.",
-    image: "./books-images/harry-potter-and-the-sorcerer'.jpg",
+    image: "./books-images/harry-potter-and-the-sorcerer.jpg",
   },
   {
     title: "Moby-Dick",
@@ -193,6 +193,9 @@ books.forEach((book) => {
   const bookInfo = document.createElement("div");
   bookInfo.className = "book-info";
 
+  const bookImg = document.createElement("img");
+  bookImg.src = book.image;
+
   const bookTitle = document.createElement("h3");
   bookTitle.id = "book-title";
   bookTitle.textContent = book.title;
@@ -225,6 +228,7 @@ books.forEach((book) => {
   const bookDescription = document.createElement("p");
   bookDescription.textContent = book.description;
 
+  bookInfo.appendChild(bookImg);
   bookInfo.appendChild(bookTitle);
   bookInfo.appendChild(bookAuthor);
   bookInfo.appendChild(bookYear);
