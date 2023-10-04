@@ -197,18 +197,31 @@ books.forEach((book) => {
   bookTitle.id = "book-title";
   bookTitle.textContent = book.title;
 
+  // Author
+  const authorLabel = document.createElement("strong");
+  authorLabel.textContent = "Author: ";
   const bookAuthor = document.createElement("h4");
-  bookAuthor.textContent = `Author: ${book.author}`;
+  bookAuthor.append(authorLabel, book.author);
 
+  // Year
+  const yearLabel = document.createElement("strong");
+  yearLabel.textContent = "Year: ";
   const bookYear = document.createElement("h4");
-  bookYear.textContent = `Year: ${book.year}`;
+  bookYear.append(yearLabel, book.year);
 
+  // Genre
+  const genreLabel = document.createElement("strong");
+  genreLabel.textContent = "Genre: ";
   const bookGenre = document.createElement("h4");
-  bookGenre.textContent = `Genre: ${book.genre}`;
+  bookGenre.append(genreLabel, book.genre);
 
+  // Rating
+  const ratingLabel = document.createElement("strong");
+  ratingLabel.textContent = "Rating: ";
   const bookRating = document.createElement("p");
-  bookRating.textContent = `Rating: ${book.rating}`;
+  bookRating.append(ratingLabel, book.rating);
 
+  // Description
   const bookDescription = document.createElement("p");
   bookDescription.textContent = book.description;
 
