@@ -2,8 +2,13 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-ul {
-  list-style-type: none;
+h1 {
+  text-align: center;
+}
+
+h4,
+p {
+  font-weight: 300;
 }
 
 #book-title {

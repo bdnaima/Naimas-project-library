@@ -2,6 +2,7 @@
 If you choose to create your own arrays with elements, just make sure that some
 of the properties make sense to filter on, and some to sort on.*/
 
+// Array of books data
 const books = [
   {
     title: "The Great Gatsby",
@@ -187,8 +188,8 @@ const books = [
 
 const bookContent = document.querySelector(".book-list");
 
+//Loop through books array
 books.forEach((book) => {
-  // const elementli = document.createElement("li");
   const bookInfo = document.createElement("div");
   bookInfo.className = "book-info";
 
@@ -202,9 +203,21 @@ books.forEach((book) => {
   const bookYear = document.createElement("h4");
   bookYear.textContent = `Year: ${book.year}`;
 
+  const bookGenre = document.createElement("h4");
+  bookGenre.textContent = `Genre: ${book.genre}`;
+
+  const bookRating = document.createElement("p");
+  bookRating.textContent = `Rating: ${book.rating}`;
+
+  const bookDescription = document.createElement("p");
+  bookDescription.textContent = book.description;
+
   bookInfo.appendChild(bookTitle);
   bookInfo.appendChild(bookAuthor);
   bookInfo.appendChild(bookYear);
+  bookInfo.appendChild(bookGenre);
+  bookInfo.appendChild(bookRating);
+  bookInfo.appendChild(bookDescription);
 
   bookContent.appendChild(bookInfo);
 });
