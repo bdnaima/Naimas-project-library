@@ -1,0 +1,23 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#book-title {
+  text-decoration: underline;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-info {
+  padding: 1rem;
+  width: 20%;
+  border: 2px solid;
+  margin: 1rem;
+}
