@@ -187,6 +187,43 @@ const books = [
 ];
 
 const bookContent = document.querySelector(".book-list");
+const filterBtn = document.getElementById("filter");
+
+let desiredGenre = "Fantasy";
+
+filterBtn.addEventListener("click", () => {
+  const filteredBooks = books.filter((book) => {
+    return book.genre === desiredGenre;
+  });
+
+  // Remove previous books
+  bookContent.textContent = "";
+
+  // Add filtered books
+  filteredBooks.forEach((book) => {
+    const bookInfo = document.createElement("div");
+    bookInfo.className = "book-info";
+
+    const bookImg = document.createElement("img");
+    bookImg.src = book.image;
+
+    const bookTitle = document.createElement("h3");
+    bookTitle.id = "book-title";
+    bookTitle.textContent = book.title;
+
+    // Genre
+    const genreLabel = document.createElement("strong");
+    genreLabel.textContent = "Genre: ";
+    const bookGenre = document.createElement("h4");
+    bookGenre.append(genreLabel, book.genre);
+
+    bookInfo.appendChild(bookImg);
+    bookInfo.appendChild(bookTitle);
+    bookInfo.appendChild(bookGenre);
+
+    bookContent.appendChild(bookInfo);
+  });
+});
 
 //Loop through books array
 books.forEach((book) => {
