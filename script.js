@@ -187,46 +187,10 @@ const books = [
 ];
 
 const bookContent = document.querySelector(".book-list");
-const filterBtn = document.getElementById("filter");
+const dropDown = document.getElementById("genres");
 
-let desiredGenre = "Fantasy";
-
-filterBtn.addEventListener("click", () => {
-  const filteredBooks = books.filter((book) => {
-    return book.genre === desiredGenre;
-  });
-
-  // Remove previous books
-  bookContent.textContent = "";
-
-  // Add filtered books
-  filteredBooks.forEach((book) => {
-    const bookInfo = document.createElement("div");
-    bookInfo.className = "book-info";
-
-    const bookImg = document.createElement("img");
-    bookImg.src = book.image;
-
-    const bookTitle = document.createElement("h3");
-    bookTitle.id = "book-title";
-    bookTitle.textContent = book.title;
-
-    // Genre
-    const genreLabel = document.createElement("strong");
-    genreLabel.textContent = "Genre: ";
-    const bookGenre = document.createElement("h4");
-    bookGenre.append(genreLabel, book.genre);
-
-    bookInfo.appendChild(bookImg);
-    bookInfo.appendChild(bookTitle);
-    bookInfo.appendChild(bookGenre);
-
-    bookContent.appendChild(bookInfo);
-  });
-});
-
-//Loop through books array
-books.forEach((book) => {
+//Function for appending books
+const appendBook = (book) => {
   const bookInfo = document.createElement("div");
   bookInfo.className = "book-info";
 
@@ -274,4 +238,29 @@ books.forEach((book) => {
   bookInfo.appendChild(bookDescription);
 
   bookContent.appendChild(bookInfo);
+};
+
+const filteredGenres = (selectedGenre) => {
+  // Remove previous books
+  if (selectedGenre === "all") {
+    books.forEach((book) => appendBook(book));
+  } else {
+    const filteredBooks = books.filter((book) => {
+      return book.genre === selectedGenre;
+    });
+
+    // Remove previous books
+    bookContent.textContent = "";
+    // Add filtered books
+    filteredBooks.forEach((book) => {
+      appendBook(book);
+    });
+  }
+};
+dropDown.addEventListener("change", () => {
+  const selectedGenre = dropDown.value;
+  filteredGenres(selectedGenre);
 });
+
+// Display all books when page first loads
+books.forEach((book) => appendBook(book));
