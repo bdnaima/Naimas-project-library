@@ -189,6 +189,12 @@ const books = [
 const bookContent = document.querySelector(".book-list");
 const dropDown = document.getElementById("genres");
 
+// Buttons
+const sortBtnNew = document.getElementById("sort-new");
+const sortBtnOld = document.getElementById("sort-old");
+const sortBtnHigh = document.getElementById("sort-high");
+const sortBtnLow = document.getElementById("sort-low");
+
 //Function for appending books
 const appendBook = (book) => {
   const bookInfo = document.createElement("div");
@@ -240,8 +246,11 @@ const appendBook = (book) => {
   bookContent.appendChild(bookInfo);
 };
 
+// Display all books when page first loads
+books.forEach((book) => appendBook(book));
+
+// Filter Books
 const filteredGenres = (selectedGenre) => {
-  // Remove previous books
   if (selectedGenre === "all") {
     books.forEach((book) => appendBook(book));
   } else {
@@ -262,5 +271,37 @@ dropDown.addEventListener("change", () => {
   filteredGenres(selectedGenre);
 });
 
-// Display all books when page first loads
-books.forEach((book) => appendBook(book));
+// Sort Books
+const sortNewToOld = () => {
+  const sorted = books.sort((a, b) => b.year - a.year);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+};
+
+const sortOldToNew = () => {
+  const sorted = books.sort((a, b) => a.year - b.year);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+};
+
+const sortHighToLow = () => {
+  const sorted = books.sort((a, b) => b.rating - a.rating);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+};
+
+const sortLowToHigh = () => {
+  const sorted = books.sort((a, b) => a.rating - b.rating);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+};
+
+sortBtnNew.addEventListener("click", sortNewToOld);
+sortBtnOld.addEventListener("click", sortOldToNew);
+
+sortBtnHigh.addEventListener("click", sortHighToLow);
+sortBtnLow.addEventListener("click", sortLowToHigh);
