@@ -194,6 +194,8 @@ const sortBtnNew = document.getElementById("sort-new");
 const sortBtnOld = document.getElementById("sort-old");
 const sortBtnHigh = document.getElementById("sort-high");
 const sortBtnLow = document.getElementById("sort-low");
+const twentyFirstBtn = document.getElementById("twenty-first");
+const sortAlphabeticallyBtn = document.getElementById("alphabetically");
 
 //Function for appending books
 const appendBook = (book) => {
@@ -300,8 +302,35 @@ const sortLowToHigh = () => {
   sorted.forEach((book) => appendBook(book));
 };
 
+// Filter 21 centry books
+const getTwentyFirst = () => {
+  const filteredBooks = books.filter((book) => book.year > 2000);
+  // Remove previous books
+  bookContent.textContent = "";
+  filteredBooks.forEach((book) => appendBook(book));
+};
+
+// Sort Alphabetically
+const sortAlphabetically = () => {
+  const sorted = books.sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+};
+
 sortBtnNew.addEventListener("click", sortNewToOld);
 sortBtnOld.addEventListener("click", sortOldToNew);
 
 sortBtnHigh.addEventListener("click", sortHighToLow);
 sortBtnLow.addEventListener("click", sortLowToHigh);
+
+twentyFirstBtn.addEventListener("click", getTwentyFirst);
+sortAlphabeticallyBtn.addEventListener("click", sortAlphabetically);
