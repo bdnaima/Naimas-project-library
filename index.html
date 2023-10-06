@@ -14,10 +14,23 @@
       rel="stylesheet"
     />
     <title>Digital Library</title>
+    <script
+      src="https://kit.fontawesome.com/e8286fde48.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
     <h1>Digital Library</h1>
+
+    <input
+      id="user-search"
+      type="text"
+      placeholder="Search books"
+      name="search"
+    />
+    <button id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+
     <select id="genres">
       <option value="all">All</option>
       <option value="Fantasy">Fantasy</option>
@@ -32,7 +45,7 @@
     <button id="sort-new">New to Old</button>
     <button id="sort-old">Old to New</button>
 
-    <button id="sort-high">Higest to Lowest</button>
+    <button id="sort-high">Highest to Lowest</button>
     <button id="sort-low">Lowest to Highest</button>
     <button id="twenty-first">21st century books</button>
     <button id="alphabetically">Sort Alphabetically</button>

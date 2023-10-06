@@ -188,6 +188,8 @@ const books = [
 
 const bookContent = document.querySelector(".book-list");
 const dropDown = document.getElementById("genres");
+const userSearch = document.getElementById("user-search");
+const searchBtn = document.getElementById("search");
 
 // Buttons
 const sortBtnNew = document.getElementById("sort-new");
@@ -325,6 +327,24 @@ const sortAlphabetically = () => {
   bookContent.textContent = "";
   sorted.forEach((book) => appendBook(book));
 };
+
+// Filter through search input
+const searchBooks = () => {
+  const value = userSearch.value;
+
+  const filterSearchBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(value.toLowerCase())
+  );
+  bookContent.textContent = "";
+
+  if (filterSearchBooks.length === 0) {
+    console.log("Sorry no such books exist");
+  } else {
+    filterSearchBooks.forEach((book) => appendBook(book));
+  }
+};
+
+searchBtn.addEventListener("click", searchBooks);
 
 sortBtnNew.addEventListener("click", sortNewToOld);
 sortBtnOld.addEventListener("click", sortOldToNew);
