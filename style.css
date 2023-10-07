@@ -1,10 +1,12 @@
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #002907;
 }
 
 h1 {
   text-align: center;
   margin-top: 4rem;
+  color: #e0d3b8;
 }
 
 h4,
@@ -24,15 +26,13 @@ img {
 .book-list {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
 }
 
 .book-info {
   padding: 1rem;
-  max-width: 20%;
-  border: 2px solid;
+  width: 20rem;
   margin: 1rem;
+  background-color: #e0d3b8;
 }
 
 @media only screen and (max-width: 768px) {

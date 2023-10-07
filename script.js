@@ -255,81 +255,32 @@ books.forEach((book) => appendBook(book));
 
 // Filter Books
 const filteredGenres = (selectedGenre) => {
+  // Remove previous books
+  bookContent.textContent = "";
+
   if (selectedGenre === "all") {
+    // Remove previous books
     books.forEach((book) => appendBook(book));
   } else {
     const filteredBooks = books.filter((book) => {
       return book.genre === selectedGenre;
     });
 
-    // Remove previous books
-    bookContent.textContent = "";
     // Add filtered books
     filteredBooks.forEach((book) => {
       appendBook(book);
     });
   }
 };
+
+// Filter genres
 dropDown.addEventListener("change", () => {
   const selectedGenre = dropDown.value;
   filteredGenres(selectedGenre);
 });
 
-// Sort Books
-const sortNewToOld = () => {
-  const sorted = books.sort((a, b) => b.year - a.year);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-};
-
-const sortOldToNew = () => {
-  const sorted = books.sort((a, b) => a.year - b.year);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-};
-
-const sortHighToLow = () => {
-  const sorted = books.sort((a, b) => b.rating - a.rating);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-};
-
-const sortLowToHigh = () => {
-  const sorted = books.sort((a, b) => a.rating - b.rating);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-};
-
-// Filter 21 centry books
-const getTwentyFirst = () => {
-  const filteredBooks = books.filter((book) => book.year > 2000);
-  // Remove previous books
-  bookContent.textContent = "";
-  filteredBooks.forEach((book) => appendBook(book));
-};
-
-// Sort Alphabetically
-const sortAlphabetically = () => {
-  const sorted = books.sort((a, b) => {
-    if (a.title < b.title) {
-      return -1;
-    }
-    if (a.title > b.title) {
-      return 1;
-    }
-    return 0;
-  });
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-};
-
-// Filter through search input
-const searchBooks = () => {
+// Search books in input
+searchBtn.addEventListener("click", () => {
   const value = userSearch.value;
 
   const filterSearchBooks = books.filter((book) =>
@@ -342,15 +293,60 @@ const searchBooks = () => {
   } else {
     filterSearchBooks.forEach((book) => appendBook(book));
   }
-};
+});
 
-searchBtn.addEventListener("click", searchBooks);
+// Sort books from newest to oldest
+sortBtnNew.addEventListener("click", () => {
+  const sorted = books.sort((a, b) => b.year - a.year);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+});
 
-sortBtnNew.addEventListener("click", sortNewToOld);
-sortBtnOld.addEventListener("click", sortOldToNew);
+// Sort books from oldest to newest
+sortBtnOld.addEventListener("click", () => {
+  const sorted = books.sort((a, b) => a.year - b.year);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+});
 
-sortBtnHigh.addEventListener("click", sortHighToLow);
-sortBtnLow.addEventListener("click", sortLowToHigh);
+// Sort book ratings from highest to lowest
+sortBtnHigh.addEventListener("click", () => {
+  const sorted = books.sort((a, b) => b.rating - a.rating);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+});
 
-twentyFirstBtn.addEventListener("click", getTwentyFirst);
-sortAlphabeticallyBtn.addEventListener("click", sortAlphabetically);
+// Sort book ratings from lowest to highest
+sortBtnLow.addEventListener("click", () => {
+  const sorted = books.sort((a, b) => a.rating - b.rating);
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+});
+
+// Filter books from the 21st century
+twentyFirstBtn.addEventListener("click", () => {
+  const filteredBooks = books.filter((book) => book.year > 2000);
+  // Remove previous books
+  bookContent.textContent = "";
+  filteredBooks.forEach((book) => appendBook(book));
+});
+
+// Sort books alphabetically
+sortAlphabeticallyBtn.addEventListener("click", () => {
+  const sorted = books.sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
+  // Remove previous books
+  bookContent.textContent = "";
+  sorted.forEach((book) => appendBook(book));
+});
