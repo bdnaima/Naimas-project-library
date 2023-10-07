@@ -190,12 +190,9 @@ const bookContent = document.querySelector(".book-list");
 const dropDown = document.getElementById("genres");
 const userSearch = document.getElementById("user-search");
 const searchBtn = document.getElementById("search");
+const sortDropdown = document.getElementById("sortBooks");
 
 // Buttons
-const sortBtnNew = document.getElementById("sort-new");
-const sortBtnOld = document.getElementById("sort-old");
-const sortBtnHigh = document.getElementById("sort-high");
-const sortBtnLow = document.getElementById("sort-low");
 const twentyFirstBtn = document.getElementById("twenty-first");
 const sortAlphabeticallyBtn = document.getElementById("alphabetically");
 
@@ -253,13 +250,12 @@ const appendBook = (book) => {
 // Display all books when page first loads
 books.forEach((book) => appendBook(book));
 
-// Filter Books
-const filteredGenres = (selectedGenre) => {
+// Filter Books based on genres
+const filterGenres = (selectedGenre) => {
   // Remove previous books
   bookContent.textContent = "";
 
   if (selectedGenre === "all") {
-    // Remove previous books
     books.forEach((book) => appendBook(book));
   } else {
     const filteredBooks = books.filter((book) => {
@@ -273,58 +269,43 @@ const filteredGenres = (selectedGenre) => {
   }
 };
 
-// Filter genres
+// Filter genres from dropdown
 dropDown.addEventListener("change", () => {
   const selectedGenre = dropDown.value;
-  filteredGenres(selectedGenre);
+  filterGenres(selectedGenre);
 });
 
-// Search books in input
-searchBtn.addEventListener("click", () => {
-  const value = userSearch.value;
-
-  const filterSearchBooks = books.filter((book) =>
-    book.title.toLowerCase().includes(value.toLowerCase())
-  );
+// Sort books with select
+const sortBooks = (selected) => {
+  // Remove previous books
   bookContent.textContent = "";
 
-  if (filterSearchBooks.length === 0) {
-    console.log("Sorry no such books exist");
-  } else {
-    filterSearchBooks.forEach((book) => appendBook(book));
+  switch (selected) {
+    case "year-descending":
+      const sortYearDesc = books.sort((a, b) => b.year - a.year);
+      sortYearDesc.forEach((book) => appendBook(book));
+      break;
+    case "year-ascending":
+      const sortYearAsc = books.sort((a, b) => a.year - b.year);
+      sortYearAsc.forEach((book) => appendBook(book));
+      break;
+    case "rating-descending":
+      const sortRatingDesc = books.sort((a, b) => b.rating - a.rating);
+      sortRatingDesc.forEach((book) => appendBook(book));
+      break;
+    case "rating-ascending":
+      const sortRatingAsc = books.sort((a, b) => a.rating - b.rating);
+      sortRatingAsc.forEach((book) => appendBook(book));
+      break;
+    default:
+      console.log("Nothing to sort");
   }
-});
+};
 
-// Sort books from newest to oldest
-sortBtnNew.addEventListener("click", () => {
-  const sorted = books.sort((a, b) => b.year - a.year);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-});
-
-// Sort books from oldest to newest
-sortBtnOld.addEventListener("click", () => {
-  const sorted = books.sort((a, b) => a.year - b.year);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-});
-
-// Sort book ratings from highest to lowest
-sortBtnHigh.addEventListener("click", () => {
-  const sorted = books.sort((a, b) => b.rating - a.rating);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-});
-
-// Sort book ratings from lowest to highest
-sortBtnLow.addEventListener("click", () => {
-  const sorted = books.sort((a, b) => a.rating - b.rating);
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
+// Sort books using dropdown
+sortDropdown.addEventListener("change", () => {
+  const value = sortDropdown.value;
+  sortBooks(value);
 });
 
 // Filter books from the 21st century
@@ -349,4 +330,20 @@ sortAlphabeticallyBtn.addEventListener("click", () => {
   // Remove previous books
   bookContent.textContent = "";
   sorted.forEach((book) => appendBook(book));
+});
+
+// Search books in input
+searchBtn.addEventListener("click", () => {
+  const value = userSearch.value;
+
+  const filterSearchBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(value.toLowerCase())
+  );
+  bookContent.textContent = "";
+
+  if (filterSearchBooks.length === 0) {
+    console.log("Sorry no such books exist");
+  } else {
+    filterSearchBooks.forEach((book) => appendBook(book));
+  }
 });
