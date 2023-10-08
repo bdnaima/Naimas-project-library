@@ -7,25 +7,20 @@ h1 {
   text-align: center;
   margin-top: 4rem;
   color: #f9f4f2;
-  font-size: 3.5rem;
-}
-h3 {
-  font-size: 1.5rem;
 }
 h4,
 p {
   font-weight: 300;
-  font-size: 1.5rem;
 }
 
 img {
   width: 100%;
-  height: 18rem;
+  height: 12rem;
 }
 
 select {
   padding: 1rem;
-  width: 25rem;
+  width: 20rem;
   margin-left: 1rem;
   text-align: center;
   font-size: 1.2rem;
@@ -45,13 +40,13 @@ select {
   margin-left: 1rem;
   border: 2px solid gray;
   border-radius: 2rem;
-  width: 22rem;
+  width: 20rem;
   font-size: 1.3rem;
 }
 
 .input i {
   position: absolute;
-  left: 23rem;
+  left: 21rem;
   bottom: 1.2rem;
   font-size: 1.4rem;
 }
@@ -59,22 +54,23 @@ select {
 .book-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8rem;
+  gap: 1.5rem;
   justify-content: center;
 }
 
 .book-info {
   padding: 1rem;
-  width: 26rem;
+  width: 20rem;
   background-color: #f9f4f2;
   box-shadow: 0px 5px 15px #f9f4f2;
 }
 
 .d-flex {
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 5rem;
-  margin-bottom: 4rem;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .btn button {
@@ -104,25 +100,15 @@ select {
   }
 
   select {
-    margin-left: 0;
-  }
-
-  #sort {
-    margin-left: 0;
+    margin-bottom: 2rem;
   }
   .book-list {
     flex-direction: column;
     align-items: center;
   }
-  .book-info {
-    max-width: 100%;
-  }
+
   .d-flex {
     flex-direction: column;
     align-items: center;
-  }
-
-  .d-flex input {
-    margin-top: 4rem;
   }
 }
