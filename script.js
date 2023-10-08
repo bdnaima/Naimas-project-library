@@ -263,6 +263,7 @@ const filterBooks = (selected) => {
       appendBook(book);
     });
   }
+  sortDropdown.value = "";
 };
 
 // Filter books from dropdown
@@ -310,6 +311,7 @@ const sortBooks = (selected) => {
     default:
       console.log("Nothing to sort");
   }
+  dropDown.value = "";
 };
 
 // Sort books using dropdown
