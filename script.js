@@ -188,13 +188,8 @@ const books = [
 
 const bookContent = document.querySelector(".book-list");
 const dropDown = document.getElementById("genres");
-const userSearch = document.getElementById("user-search");
-const searchBtn = document.getElementById("search");
 const sortDropdown = document.getElementById("sortBooks");
-
-// Buttons
-const twentyFirstBtn = document.getElementById("twenty-first");
-const sortAlphabeticallyBtn = document.getElementById("alphabetically");
+const userSearch = document.getElementById("user-search");
 
 //Function for appending books
 const appendBook = (book) => {
@@ -251,19 +246,20 @@ const appendBook = (book) => {
 books.forEach((book) => appendBook(book));
 
 // Filter Books based on genres
-const filterGenres = (selectedGenre) => {
+const filterBooks = (selected) => {
   // Remove previous books
   bookContent.textContent = "";
 
-  if (selectedGenre === "all") {
+  if (selected === "all") {
     books.forEach((book) => appendBook(book));
+  } else if (selected === "twentyFirst") {
+    const filterTwentyFirst = books.filter((book) => book.year > 2000);
+    filterTwentyFirst.forEach((book) => appendBook(book));
   } else {
-    const filteredBooks = books.filter((book) => {
-      return book.genre === selectedGenre;
+    const filterGenres = books.filter((book) => {
+      return book.genre === selected;
     });
-
-    // Add filtered books
-    filteredBooks.forEach((book) => {
+    filterGenres.forEach((book) => {
       appendBook(book);
     });
   }
@@ -272,7 +268,7 @@ const filterGenres = (selectedGenre) => {
 // Filter genres from dropdown
 dropDown.addEventListener("change", () => {
   const selectedGenre = dropDown.value;
-  filterGenres(selectedGenre);
+  filterBooks(selectedGenre);
 });
 
 // Sort books with select
@@ -297,6 +293,20 @@ const sortBooks = (selected) => {
       const sortRatingAsc = books.sort((a, b) => a.rating - b.rating);
       sortRatingAsc.forEach((book) => appendBook(book));
       break;
+    case "alphabetically":
+      const sorted = books.sort((a, b) => {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      });
+      // Remove previous books
+      bookContent.textContent = "";
+      sorted.forEach((book) => appendBook(book));
+      break;
     default:
       console.log("Nothing to sort");
   }
@@ -308,33 +318,12 @@ sortDropdown.addEventListener("change", () => {
   sortBooks(value);
 });
 
-// Filter books from the 21st century
-twentyFirstBtn.addEventListener("click", () => {
-  const filteredBooks = books.filter((book) => book.year > 2000);
-  // Remove previous books
-  bookContent.textContent = "";
-  filteredBooks.forEach((book) => appendBook(book));
-});
-
-// Sort books alphabetically
-sortAlphabeticallyBtn.addEventListener("click", () => {
-  const sorted = books.sort((a, b) => {
-    if (a.title < b.title) {
-      return -1;
-    }
-    if (a.title > b.title) {
-      return 1;
-    }
-    return 0;
-  });
-  // Remove previous books
-  bookContent.textContent = "";
-  sorted.forEach((book) => appendBook(book));
-});
-
 // Search books in input
-searchBtn.addEventListener("click", () => {
+userSearch.addEventListener("input", () => {
   const value = userSearch.value;
+  const errorMsg = document.createElement("div");
+
+  errorMsg.className = "error";
 
   const filterSearchBooks = books.filter((book) =>
     book.title.toLowerCase().includes(value.toLowerCase())
@@ -342,7 +331,8 @@ searchBtn.addEventListener("click", () => {
   bookContent.textContent = "";
 
   if (filterSearchBooks.length === 0) {
-    console.log("Sorry no such books exist");
+    errorMsg.textContent = "Sorry, no such book exists.";
+    bookContent.appendChild(errorMsg);
   } else {
     filterSearchBooks.forEach((book) => appendBook(book));
   }
