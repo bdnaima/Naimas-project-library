@@ -32,15 +32,6 @@ select {
   border-radius: 1rem;
 }
 
-label {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  color: #f9f4f2;
-  padding: 1rem;
-  font-size: 1.5rem;
-}
-
 #book-title {
   text-decoration: underline;
 }
@@ -68,7 +59,7 @@ label {
 .book-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 8rem;
   justify-content: center;
 }
 
@@ -81,9 +72,9 @@ label {
 
 .d-flex {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-top: 5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .btn button {
@@ -103,7 +94,7 @@ label {
   width: 20rem;
   margin-top: 2rem;
   text-align: center;
-  color: red;
+  color: #9b111e;
   font-size: 1.5rem;
 }
 

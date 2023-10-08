@@ -265,7 +265,7 @@ const filterBooks = (selected) => {
   }
 };
 
-// Filter genres from dropdown
+// Filter books from dropdown
 dropDown.addEventListener("change", () => {
   const selectedGenre = dropDown.value;
   filterBooks(selectedGenre);
